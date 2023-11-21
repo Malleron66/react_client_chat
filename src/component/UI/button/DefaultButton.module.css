@@ -1,0 +1,22 @@
+.defaultButton{
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: #f3fce9;
+    font-size: 17px;
+    background-color: #588f94;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s, transform 0.3s; 
+}
+.defaultButton:hover{
+    background-color: #3d797c;
+}
+.defaultButton:active{
+    transform: scale(0.95); 
+    background-color: #2a6466;
+}
+.loginButton{
+    width: 242px;
+    height: 36px;
+}

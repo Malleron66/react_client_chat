@@ -1,0 +1,18 @@
+.defaultInput{
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: #f3fce9;
+    font-size: 17px;
+    border: 3px solid #5a9194;
+    background: rgb(28 29 31 / 90%);
+    outline: none;
+}
+.boxShadow{
+    box-shadow: rgb(89 144 147) 0px 0px 60px;
+}
+.messageInput{
+    height: 30px;
+    padding: 0px;
+    background: rgb(28 29 31 / 0%);
+    border: none;
+}
