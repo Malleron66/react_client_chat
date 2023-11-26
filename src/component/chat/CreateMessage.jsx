@@ -10,6 +10,8 @@ const CreateMessage = ({ customClass, ...props }) => {
     : css.smsText;
   const clickClass = combinedClasses + ` ${css.block}`;
   const bluerClass = combinedClasses;
+
+
   const [isBlockClassActive, setIsBlockClassActive] = useState(false);
   const clickMessage = () => {
     setIsBlockClassActive(true);
@@ -33,7 +35,7 @@ const CreateMessage = ({ customClass, ...props }) => {
       onBlur={blurMessage}
     >
       <span className={css.textContent}>
-        <span>fdfdfdf</span>
+        <span>{props.message.valueMessage}</span>
       </span>
       <div className={css.wIcon}>
         <span>
