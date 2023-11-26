@@ -12,7 +12,7 @@ export const Routers = createBrowserRouter([
       element: <Home head='&#60; Назад' title='Регистрация' pageType='registration'/>,
     },
     {
-      path: '/user/:id',
+      path: '/user/:fullName',
       element: <WrapperChat/>,
     },
 ]);

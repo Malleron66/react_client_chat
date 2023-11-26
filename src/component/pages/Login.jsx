@@ -29,7 +29,7 @@ const Login = () => {
       localStorage.setItem('token', dataRes.token);
       console.log(dataRes);
       if (dataRes.token) {
-        window.location.replace(`/user/${dataRes._id}`);
+        window.location.replace(`/user/${dataRes.fullName}`);
       } else {
         console.error("Ошибка аутентификации");
       }
