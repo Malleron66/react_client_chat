@@ -4,13 +4,17 @@ import redactButtonImg from "../../img/icon/redact.png";
 import delButtonImg from "../../img/icon/del.png";
 import ImageButton from "../UI/button/ImageButton";
 
-const CreateMessage = ({ customClass, ...props }) => {
+const CreateMessage = ({
+  customClass,
+  deleteCallback,
+  editingCallback,
+  ...props
+}) => {
   const combinedClasses = customClass
     ? `${css.smsText} ${css[customClass]}`
     : css.smsText;
   const clickClass = combinedClasses + ` ${css.block}`;
   const bluerClass = combinedClasses;
-
 
   const [isBlockClassActive, setIsBlockClassActive] = useState(false);
   const clickMessage = () => {
@@ -19,12 +23,21 @@ const CreateMessage = ({ customClass, ...props }) => {
   const blurMessage = () => {
     setIsBlockClassActive(false);
   };
-  const editingButtonClick = () => {
-    console.log("Нажата кнопка редактирования");
-  };
-  const delButtonClick = () => {
-    console.log("Нажата кнопка удаления");
-  };
+
+  if (customClass === "received") {
+    return (
+      <div
+        {...props}
+        tabIndex={0}
+        className={combinedClasses}
+      >
+        <span className={css.textContent}>
+          <span>{props.message.valueMessage}</span>
+        </span>
+      </div>
+    );
+  }
+  
 
   return (
     <div
@@ -42,7 +55,7 @@ const CreateMessage = ({ customClass, ...props }) => {
           <ImageButton
             imageUrl={redactButtonImg}
             altText={"Editing"}
-            onClick={editingButtonClick}
+            onClick={() => editingCallback(props.message)}
             titleText={"Editing"}
           />
         </span>
@@ -50,7 +63,7 @@ const CreateMessage = ({ customClass, ...props }) => {
           <ImageButton
             imageUrl={delButtonImg}
             altText={"Delete"}
-            onClick={delButtonClick}
+            onClick={() => deleteCallback(props.message)}
             titleText={"Delete"}
           />
         </span>
