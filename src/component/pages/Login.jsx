@@ -4,6 +4,7 @@ import DefaultButton from "../UI/button/DefaultButton";
 import { NavLink } from "react-router-dom";
 import css from "./Home.module.css";
 import { useForm } from "react-hook-form";
+import { server } from "../routers/Routers"
 
 const Login = () => {
   const {
@@ -19,7 +20,7 @@ const Login = () => {
   });
   const onSubmit = async (data) => {
     try {
-      const res = await fetch("http://localhost:3000/login", {
+      const res = await fetch(`${server}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

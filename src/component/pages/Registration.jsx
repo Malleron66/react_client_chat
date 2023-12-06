@@ -3,6 +3,7 @@ import DefaultButton from "../UI/button/DefaultButton";
 import DefaultInput from "../UI/input/DefaultInput";
 import css from "./Home.module.css";
 import { useForm } from "react-hook-form";
+import { server } from "../routers/Routers"
 
 const Registration = () => {
   const {
@@ -23,7 +24,7 @@ const Registration = () => {
   const onSubmit = async (data) => {
     const { passwordConfirmation, ...dataUser } = data;
     try {
-      const res = await fetch("http://localhost:3000/registration", {
+      const res = await fetch(`${server}/registration`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dataUser),

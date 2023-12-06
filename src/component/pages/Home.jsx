@@ -4,6 +4,7 @@ import css from "./Home.module.css";
 import Login from "./Login";
 import Registration from "./Registration";
 import { NavLink } from "react-router-dom";
+import { server } from "../routers/Routers"
 
 export const Home = (props) => {
   const pageType = props.pageType;
@@ -13,7 +14,7 @@ export const Home = (props) => {
     const checkTokenAndNavigate = async () => {
       if (token) {
         try {
-          const res = await fetch("http://localhost:3000/me", {
+          const res = await fetch(`${server}/me`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",

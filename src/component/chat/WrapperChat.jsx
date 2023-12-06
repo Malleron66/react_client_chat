@@ -4,10 +4,13 @@ import hrefImgButton from "../../img/img_loader.png";
 import DefaultButton from "../UI/button/DefaultButton";
 import DefaultInput from "../UI/input/DefaultInput";
 import CreateMessage from "./CreateMessage";
+import { server } from "../routers/Routers";
 
 export const WrapperChat = () => {
   const [userId, setUserId] = useState(null);
   const [messages, setMessage] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [idEditing, setIdEditing] = useState("");
   const [titleMessage, setTitleMessage] = useState("");
   const token = localStorage.getItem("token");
   const smsContainerRef = useRef();
@@ -22,7 +25,7 @@ export const WrapperChat = () => {
   //Получение id пользователя по токену
   const getUser = useCallback(async () => {
     try {
-      const res = await fetch("http://localhost:3000/me", {
+      const res = await fetch(`${server}/me`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -31,7 +34,6 @@ export const WrapperChat = () => {
       });
 
       const dataRes = await res.json();
-      console.log(dataRes)
       return dataRes._id;
     } catch (error) {
       console.error("Произошла ошибка: " + error);
@@ -41,7 +43,7 @@ export const WrapperChat = () => {
   //Получение Всех сообщений с базы (временно)
   const getMessage = useCallback(async () => {
     try {
-      const res = await fetch("http://localhost:3000/message", {
+      const res = await fetch(`${server}/message`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +53,7 @@ export const WrapperChat = () => {
 
       const dataRes = await res.json();
       const newMessages = dataRes.map((data) => ({
-        id: data._id,
+        id: data.id,
         customClass: userId === data.user ? "sent" : "received",
         valueMessage: data.text,
       }));
@@ -78,34 +80,80 @@ export const WrapperChat = () => {
 
   //Отправка сообщения + занесение в базу
   const sendMessage = () => {
-    if (titleMessage !== "") {
-      const newMessage = {
-        id: Date.now(),
-        customClass: "sent",
-        valueMessage: titleMessage,
-      };
-      const dataMessage = {
-        text: titleMessage,
-      };
-      setMessage([...messages, newMessage]);
-      fetch("http://localhost:3000/message", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "Bearer " + token,
-        },
-        body: JSON.stringify(dataMessage),
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          console.log("Сервер ответил:", result);
-        })
-        .catch((error) => {
-          console.error("Ошибка:", error);
-        });
-    }
+    if (!isEditing) {
+      if (titleMessage !== "") {
+        const newMessage = {
+          id: Date.now(),
+          customClass: "sent",
+          valueMessage: titleMessage,
+        };
 
-    setTitleMessage("");
+        const dataMessage = {
+          id: newMessage.id,
+          text: titleMessage,
+        };
+        setMessage([...messages, newMessage]);
+
+        fetch(`${server}/message`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer " + token,
+          },
+          body: JSON.stringify(dataMessage),
+        })
+          .then((response) => response.json())
+          .catch((error) => {
+            console.error("Ошибка:", error);
+          });
+      }
+
+      setTitleMessage("");
+    } else {
+      if (titleMessage !== "") {
+        const dataMessage = {
+          id: idEditing,
+          idUpdate: Date.now(),
+          text: titleMessage,
+        };
+        fetch(`${server}/message`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer " + token,
+          },
+          body: JSON.stringify(dataMessage),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            if (!result.error) {
+              const messageUpdate = {
+                id: dataMessage.idUpdate,
+                customClass: "sent",
+                valueMessage: titleMessage,
+              };
+              const updatedMessages = messages.map((m) => {
+                if (m.id === idEditing) {
+                  return { ...m, ...messageUpdate };
+                }
+                return m;
+              });
+              setMessage(updatedMessages);
+            }
+          })
+          .catch((error) => {
+            console.error("Ошибка:", error);
+          });
+        setIdEditing("");
+        setTitleMessage("");
+        setIsEditing(false);
+      }else{
+        setIdEditing("");
+        setTitleMessage("");
+        setIsEditing(false);
+      }
+
+    }
   };
 
   //Загрузка картинок
@@ -116,9 +164,35 @@ export const WrapperChat = () => {
   };
 
   //Выход пользователя с системы
-  const logOut = () =>{
+  const logOut = () => {
     localStorage.removeItem("token");
     window.location.replace(`/`);
+  };
+
+  const deleteCallback = (message) => {
+    fetch(`${server}/message`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({ id: message.id }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (!result.error) {
+          const newMessages = messages.filter((m) => m.id !== message.id);
+          setMessage(newMessages);
+        }
+      })
+      .catch((error) => {
+        console.error("Ошибка:", error);
+      });
+  };
+  const editingCallback = (message) => {
+    setTitleMessage(message.valueMessage);
+    setIdEditing(message.id);
+    setIsEditing(true);
   };
   return (
     <>
@@ -130,6 +204,8 @@ export const WrapperChat = () => {
         <div className={css.wSms} ref={smsContainerRef}>
           {messages.map((message) => (
             <CreateMessage
+              deleteCallback={deleteCallback}
+              editingCallback={editingCallback}
               message={message}
               customClass={message.customClass}
               key={message.id}
@@ -149,7 +225,7 @@ export const WrapperChat = () => {
               <img
                 src={hrefImgButton}
                 className={css.loaderImgButton}
-                alt="Логотип"
+                alt="Load img"
                 title="Load img"
               />
             </label>
@@ -161,7 +237,10 @@ export const WrapperChat = () => {
               multiple
             />
           </div>
-          <DefaultButton onClick={sendMessage} value="Send" />
+          <DefaultButton
+            onClick={sendMessage}
+            value={isEditing ? "Edit" : "Send"}
+          />
         </div>
       </div>
     </>
