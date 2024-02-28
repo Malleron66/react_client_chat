@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import homeLogo from "../../img/logo_home.png";
 import css from "./Home.module.css";
 import Login from "./Login";
-import Registration from "./Registration";
+import Registration from "./registration/Registration";
 import { NavLink } from "react-router-dom";
 import { server } from "../routers/Routers"
 

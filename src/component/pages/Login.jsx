@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import DefaultInput from "../UI/input/DefaultInput";
 import DefaultButton from "../UI/button/DefaultButton";
 import { NavLink } from "react-router-dom";
 import css from "./Home.module.css";
 import { useForm } from "react-hook-form";
-import { server } from "../routers/Routers"
+import { server } from "../routers/Routers";
+import { LanguageContext } from "../multilingual/LanguageProvider";
 
 const Login = () => {
+  const { language } = useContext(LanguageContext);
+  const translations = require(`../multilingual/languages/${language}.json`);
   const {
     register,
     handleSubmit,
@@ -27,7 +30,7 @@ const Login = () => {
       });
 
       const dataRes = await res.json();
-      localStorage.setItem('token', dataRes.token);
+      localStorage.setItem("token", dataRes.token);
       console.log(dataRes);
       if (dataRes.token) {
         window.location.replace(`/user/${dataRes.fullName}`);
@@ -46,12 +49,12 @@ const Login = () => {
           <DefaultInput
             customClass="boxShadow"
             type="text"
-            placeholder="Введите email"
+            placeholder={translations.enterEmail}
             {...register("email", {
-              required: "Поле email обязательно!",
+              required: `${translations.theEmailFieldIsRequired}`,
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "Неправильный формат email",
+                message: `${translations.incorrectEmailFormat}`,
               },
             })}
           />
@@ -61,8 +64,10 @@ const Login = () => {
           <DefaultInput
             customClass="boxShadow"
             type="password"
-            placeholder="Введите пароль"
-            {...register("password", { required: "Вы не ввели пароль!" })}
+            placeholder={translations.enterPassword}
+            {...register("password", {
+              required: `${translations.youHaveNotEnteredYourPassword}`,
+            })}
           />
           <p>{errors.password?.message}</p>
         </div>
@@ -70,14 +75,12 @@ const Login = () => {
           <DefaultButton
             type="submit"
             customClass="loginButton"
-            value="Войти"
+            value={translations.toComeIn}
           />
         </div>
         <div className={css.formGroup}>
-          <p>
-            Нет аккаунта?
-            <NavLink to="/registration">Зарегистрируйтесь здесь</NavLink>
-          </p>
+          <span>{translations.dontHaveAnAccount}</span>
+          <NavLink to="/registration">{translations.registerHere}</NavLink>
         </div>
       </form>
     </>

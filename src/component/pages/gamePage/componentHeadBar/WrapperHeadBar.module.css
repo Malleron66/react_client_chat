@@ -1,0 +1,19 @@
+.gridContainer {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* Левый блок, остаток пространства, правый блок */
+}
+.gridLeftItem {
+  justify-self: start; /* Выравнивание к крайней левой стороне */
+  margin: 10px 0px 10px 10px;
+}
+.gridRightItem {
+  justify-self: end; /* Выравнивание к крайней правой стороне */
+  margin: 11px 10px 10px 0px;
+}
+.gridLeftItem > * {
+  margin-right: 10px;
+}
+.gridRightItem > * {
+  display: inline-block;
+  margin-left: 10px;
+}

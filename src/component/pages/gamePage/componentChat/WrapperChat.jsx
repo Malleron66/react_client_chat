@@ -1,12 +1,15 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef, useContext } from "react";
 import css from "./WrapperChat.module.css";
-import hrefImgButton from "../../img/img_loader.png";
-import DefaultButton from "../UI/button/DefaultButton";
-import DefaultInput from "../UI/input/DefaultInput";
+import hrefImgButton from "../../../../img/img_loader.png";
+import DefaultButton from "../../../UI/button/DefaultButton";
+import DefaultInput from "../../../UI/input/DefaultInput";
 import CreateMessage from "./CreateMessage";
-import { server } from "../routers/Routers";
+import { server } from "../../../routers/Routers";
+import { LanguageContext } from "../../../multilingual/LanguageProvider";
 
 export const WrapperChat = () => {
+  const { language } = useContext(LanguageContext);
+  const translations = require(`../../../multilingual/languages/${language}.json`);
   const [userId, setUserId] = useState(null);
   const [messages, setMessage] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -23,7 +26,7 @@ export const WrapperChat = () => {
   }, [messages]);
 
   //Получение id пользователя по токену
-  const getUser = useCallback(async () => {
+  const getUserIdByToken = useCallback(async () => {
     try {
       const res = await fetch(`${server}/me`, {
         method: "GET",
@@ -65,12 +68,12 @@ export const WrapperChat = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const id = await getUser();
+      const id = await getUserIdByToken();
       setUserId(id);
     };
 
     fetchData();
-  }, [getUser, token]);
+  }, [getUserIdByToken, token]);
 
   useEffect(() => {
     if (userId !== null) {
@@ -163,11 +166,7 @@ export const WrapperChat = () => {
     console.log(selectedFiles);
   };
 
-  //Выход пользователя с системы
-  const logOut = () => {
-    localStorage.removeItem("token");
-    window.location.replace(`/`);
-  };
+  
 
   const deleteCallback = (message) => {
     fetch(`${server}/message`, {
@@ -199,7 +198,7 @@ export const WrapperChat = () => {
       <div className={css.chatPage}>
         <div className={css.headChat}>
           Переписка от кого кому
-          <DefaultButton onClick={logOut} value="Exit" />
+          
         </div>
         <div className={css.wSms} ref={smsContainerRef}>
           {messages.map((message) => (
@@ -225,8 +224,8 @@ export const WrapperChat = () => {
               <img
                 src={hrefImgButton}
                 className={css.loaderImgButton}
-                alt="Load img"
-                title="Load img"
+                alt={translations.loadImg}
+                title={translations.loadImg}
               />
             </label>
             <DefaultInput
@@ -239,7 +238,7 @@ export const WrapperChat = () => {
           </div>
           <DefaultButton
             onClick={sendMessage}
-            value={isEditing ? "Edit" : "Send"}
+            value={isEditing ? `${translations.edit}` : `${translations.send}`}
           />
         </div>
       </div>

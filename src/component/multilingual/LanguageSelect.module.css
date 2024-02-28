@@ -1,0 +1,55 @@
+.languageSelect {
+    display: inline-block;
+    position: relative;
+    width: 66px;
+  }
+  
+  .selectedLanguage {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .selectedLanguage img,
+  .languageList img {
+    width: 23px;
+    height: 21px;
+    margin-right: 10px;
+  }
+  
+  .languageList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #292a2d;
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Анимация затухания */
+  }
+  
+  .languageList.show {
+    opacity: 1;
+  }
+  
+  .languageList li {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Анимация появления */
+  }
+  
+  .languageList.show li {
+    opacity: 1;
+  }
+  
+  .languageList li:hover {
+    background-color: #555;
+  }

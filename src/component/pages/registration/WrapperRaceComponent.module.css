@@ -1,0 +1,123 @@
+.wrapperRaceInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Три колонки */
+  gap: 10px; /* Расстояние между элементами */
+  background-color: #131b2d;
+  padding: 10px;
+  border-radius: 2px;
+  box-shadow: 2px 2px 6px 1px rgb(14 14 14);
+}
+.avatar {
+  width: 320px;
+}
+.avatar img {
+  width: 250px;
+  height: 300px;
+}
+.buttonGender {
+  margin: 30px 0;
+}
+.buttonGender span {
+  font-size: 36px;
+}
+.man span {
+  color: #516693;
+}
+.woman span {
+  color: #905193;
+}
+.activ span {
+  color: #588f94;
+}
+.versionAvatar {
+  display: flex;
+  justify-content: space-between;
+}
+.versionAvatar button {
+  flex: 1;
+  border: none;
+  background-color: #131b2d;
+  color: #516693;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0;
+  padding: 5px 10px;
+  border-left: none;
+  border-right: none;
+}
+.versionAvatar button:first-child {
+  border-top-left-radius: 2px; 
+  border-bottom-left-radius: 2px; 
+}
+
+.versionAvatar button:last-child {
+  border-top-right-radius: 2px; 
+  border-bottom-right-radius: 2px; 
+}
+.versionAvatar button:hover {
+  background-color: #1f2a3a; 
+}
+.versionAvatar button.activ {
+  background-color: #588f94;
+  color: #f3fce9;
+  font-weight: bold;
+}
+.versionAvatar button:not(:first-child):not(:last-child) {
+  border-left: 1px solid #516693;
+  border-right: 1px solid #516693;
+}
+.wrapperStat {
+  text-align: left;
+  margin: 0;
+  padding: 10px;
+  background-color: #0d1625;
+  border-radius: 2px;
+  box-shadow: 2px 2px 6px 1px rgb(14 14 14);
+}
+.wrapperStat h2 {
+  font-size: 16px;
+  margin: 0;
+  color: #516693;
+}
+.statList {
+  padding: 10px;
+  margin: 0;
+}
+.statItem {
+  list-style-type: none;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.statItem span {
+  font-weight: bold;
+  color:#588f94;
+}
+.wrapperRaceSelect{
+  margin-bottom: 20px;
+}
+.wrapperRaceSelect button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #516693;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 2px 2px 6px 1px rgb(14 14 14);
+}
+.wrapperRaceSelect button.activ,.wrapperRaceSelect button.activ:hover {
+  background-color: #588f94;
+  color: #f3fce9;
+  font-weight: bold;
+}
+.wrapperRaceSelect button:hover {
+  background-color: #425683; 
+}
+
+.wrapperRaceSelect button:focus {
+  outline: none; 
+}
+
+

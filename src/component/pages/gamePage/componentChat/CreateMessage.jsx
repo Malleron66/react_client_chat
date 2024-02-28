@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import css from "./CreateMessage.module.css";
-import redactButtonImg from "../../img/icon/redact.png";
-import delButtonImg from "../../img/icon/del.png";
-import ImageButton from "../UI/button/ImageButton";
+import redactButtonImg from "../../../../img/icon/redact.png";
+import delButtonImg from "../../../../img/icon/del.png";
+import ImageButton from "../../../UI/button/ImageButton";
 
 const CreateMessage = ({
   customClass,

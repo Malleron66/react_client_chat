@@ -3,18 +3,18 @@
     border-radius: 3px;
     color: #f3fce9;
     font-size: 17px;
-    background-color: #588f94;
+    background-color: #516693;
     font-weight: bold;
     cursor: pointer;
     border: none;
     transition: background-color 0.3s, transform 0.3s; 
 }
 .defaultButton:hover{
-    background-color: #3d797c;
+    background-color: #3d517c;
 }
 .defaultButton:active{
     transform: scale(0.95); 
-    background-color: #2a6466;
+    background-color: #2a3866;
 }
 .loginButton{
     width: 242px;
