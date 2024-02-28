@@ -1,0 +1,30 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Занимает всю доступную высоту */
+    min-width: min-content;
+    width: 100%;
+}
+.headBar{
+    flex: 0 0 auto; /* Не расширяется и не сжимается */
+    background-color: #1c1d1f;
+}
+.gridContainerTop,.gridContainerBottom{
+    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+}
+.gridContainerTop {
+    flex: 1; /* Занимает доступное пространство */
+  }
+  .gridContainerBottom {
+    flex: 0 0 auto;
+    margin-top: 0;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+  }
+
+.gridItem{
+    text-align: center;
+}

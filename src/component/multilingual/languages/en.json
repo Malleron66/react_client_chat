@@ -1,0 +1,66 @@
+{
+  "welcome": "Welcome",
+  "loading": "Loading...",
+  "news": "News",
+  "library": "Library",
+  "settings": "Settings",
+  "exit": "Exit",
+  "edit": "Edit",
+  "send": "Send",
+  "loadImg": "Load img",
+  "enterEmail": "Enter email",
+  "theEmailFieldIsRequired": "The email field is required!",
+  "incorrectEmailFormat": "Incorrect email format!",
+  "enterPassword": "Enter password",
+  "repeatPassword": "Repeat password",
+  "repeatYourPassword": "Repeat your password!",
+  "passwordMismatch": "Password mismatch!",
+  "youHaveNotEnteredYourPassword": "You have not entered your password!",
+  "toComeIn": "To come in",
+  "dontHaveAnAccount": "Don't have an account?",
+  "registerHere": "Register here",
+  "enterYourName": "Enter your name",
+  "aNameIsRequired": "A name is required!",
+  "register": "Register",
+  "variant": "Variant",
+  "stats": "Basic stats",
+  "parameters": "Parameters",
+  "mastery": "Mastery",
+  "protect": "Protect",
+  "antiProtect": "Anti protect",
+  "humans": "Humans",
+  "elves": "Elves",
+  "dwarfs": "Dwarfs",
+  "orcs": "Orcs",
+  "statPerson": {
+    "stats": {
+      "strength": "Strength",
+      "agility": "Agility",
+      "luck": "Luck",
+      "reaction": "Reaction",
+      "anger": "Anger"
+    },
+    "parameters": {
+      "health": "Health",
+      "mana": "Mana",
+      "initiative": "Initiative"
+    },
+    "mastery": {
+      "defenseMastery": "Mastery defense",
+      "weaponMastery": "Mastery weapon",
+      "unarmedCombat": "Combat unarmed"
+    },
+    "protect": {
+      "evasionProtect": "Protect evasion",
+      "luckProtect": "Protect luck",
+      "responseProtect": "Protect response",
+      "criticalProtect": "Protect critical"
+    },
+    "antiProtect": {
+      "evasionAntiProtect": "Anti protect evasion",
+      "luckAntiProtect": "Anti protect luck",
+      "responseAntiProtect": "Anti protect response",
+      "criticalAntiProtect": "Anti protect critical"
+    }
+  }
+}

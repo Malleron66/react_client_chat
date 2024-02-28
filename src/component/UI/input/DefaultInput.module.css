@@ -3,15 +3,15 @@
     border-radius: 3px;
     color: #f3fce9;
     font-size: 17px;
-    border: 3px solid #5a9194;
+    border: 2px solid #516693;
     background: rgb(28 29 31 / 90%);
     outline: none;
 }
 .boxShadow{
-    box-shadow: rgb(89 144 147) 0px 0px 60px;
+    box-shadow: #516693 0px 0px 60px;
 }
 .messageInput{
-    height: 30px;
+    height: 27px;
     padding: 0px;
     background: rgb(28 29 31 / 0%);
     border: none;

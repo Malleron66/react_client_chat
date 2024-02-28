@@ -1,38 +1,35 @@
 .chatPage{
     display: grid;
     grid-template-rows: 0fr 10fr 0fr;
-    margin: auto;
-    padding: 20px;
-    height: 95vh;
-    width: 600px;
+    padding: 10px;
+    height: 250px;
+    width: 500px;
     min-width: 500px;
-    background-image: url('../../img/fon_chat/fon1.jpg');
+    background-image: url('../../../../img/fon_chat/fon1.jpg');
     background-size: cover;
     border-radius: 5px;
-    border: 3px solid #1c1d1f;
-    border-top: none;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 .headChat{
     grid-row: 1;
     background: #1c1d1f;
     color: #fff;
-    padding: 20px;
-    margin: -23px -23px 0px -23px;
+    padding: 10px;
+    margin: -10px -10px 0px -10px;
     z-index: 1;
     border-radius: 5px 5px 0px 0px;
 }
 .wSending{
     display: grid;
-    grid-template-columns: auto 110px;
+    grid-template-columns: auto 145px;
 }
 .inputConteiner{
     display: grid;
     grid-template-columns: auto 20px;
     margin-right: 20px;
     background: rgb(28 29 31 / 70%);
-    padding: 5px 10px;
-    border: 3px solid #5a9194;
+    padding: 1px 10px;
+    border: 2px solid #516693;
 }
 .loaderImgButton{
     width: 20px;
@@ -49,7 +46,7 @@
 }
 .wSms{
     grid-row: 2;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;

@@ -1,0 +1,66 @@
+{
+  "welcome": "Добро пожаловать",
+  "loading": "Загрузка...",
+  "news": "Новости",
+  "library": "Библиотека",
+  "settings": "Настройки",
+  "exit": "Выход",
+  "edit": "Редактировать",
+  "send": "Отправить",
+  "loadImg": "Загрузить изображение",
+  "enterEmail": "Введите адрес электронной почты",
+  "theEmailFieldIsRequired": "Поле электронной почты обязательно!",
+  "incorrectEmailFormat": "Неверный формат электронной почты!",
+  "enterPassword": "Введите пароль",
+  "repeatPassword": "Повторите пароль",
+  "repeatYourPassword": "Повторите Ваш пароль!",
+  "passwordMismatch": "Пароли не совпадают!",
+  "youHaveNotEnteredYourPassword": "Вы не ввели пароль!",
+  "toComeIn": "Войти",
+  "dontHaveAnAccount": "Нет учетной записи?",
+  "registerHere": "Зарегистрируйтесь здесь",
+  "enterYourName": "Введите Ваше имя",
+  "aNameIsRequired": "Имя обязательно!",
+  "register": "Зарегистрироваться",
+  "variant": "Вариант",
+  "stats": "Базовые статы",
+  "parameters": "Параметры",
+  "mastery": "Мастерство владения",
+  "protect": "Обереги",
+  "antiProtect": "Анти-обереги",
+  "humans": "Люди",
+  "elves": "Эльфы",
+  "dwarfs": "Гномы",
+  "orcs": "Орки",
+  "statPerson": {
+    "stats": {
+      "strength": "Сила",
+      "agility": "Ловкость",
+      "luck": "Удача",
+      "reaction": "Реакция",
+      "anger": "Злость"
+    },
+    "parameters": {
+      "health": "Здоровье",
+      "mana": "Мана",
+      "initiative": "Инициатива"
+    },
+    "mastery": {
+      "defenseMastery": "Мастерство защиты",
+      "weaponMastery": "Владение оружием",
+      "unarmedCombat": "Кулачный бой"
+    },
+    "protect": {
+      "evasionProtect": "Оберег уварота",
+      "luckProtect": "Оберег удачи",
+      "responseProtect": "Оберег ответа",
+      "criticalProtect": "Оберег крита"
+    },
+    "antiProtect": {
+      "evasionAntiProtect": "Анти-оберег уварота",
+      "luckAntiProtect": "Анти-оберег удачи",
+      "responseAntiProtect": "Анти-оберег ответа",
+      "criticalAntiProtect": "Анти-оберег крита"
+    }
+  }
+}

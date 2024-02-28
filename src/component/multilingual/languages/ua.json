@@ -1,0 +1,66 @@
+{
+  "welcome": "Ласкаво просимо",
+  "loading": "Завантаження...",
+  "news": "Новини",
+  "library": "Бібліотека",
+  "settings": "Налаштування",
+  "exit": "Вихід",
+  "edit": "Редагувати",
+  "send": "Надіслати",
+  "loadImg": "Завантажити зображення",
+  "enterEmail": "Введіть адресу електронної пошти",
+  "theEmailFieldIsRequired": "Поле електронної пошти є обов'язковим!",
+  "incorrectEmailFormat": "Неправильний формат електронної пошти!",
+  "enterPassword": "Введіть пароль",
+  "repeatPassword": "Повторіть пароль",
+  "repeatYourPassword": "Повторіть свій пароль!",
+  "passwordMismatch": "Паролі не збігаються!",
+  "youHaveNotEnteredYourPassword": "Ви не ввели свій пароль!",
+  "toComeIn": "Увійти",
+  "dontHaveAnAccount": "Не маєте облікового запису?",
+  "registerHere": "Зареєструватися тут",
+  "enterYourName": "Введіть Ваше ім'я",
+  "aNameIsRequired": "Ім'я обов'язкове!",
+  "register": "Зареєструватися",
+  "variant": "Варіант",
+  "stats": "Базові стати",
+  "parameters": "Параметри",
+  "mastery": "Майстерність володіння",
+  "protect": "Обереги",
+  "antiProtect": "Анти-обереги",
+  "humans": "Люди",
+  "elves": "Ельфи",
+  "dwarfs": "Гноми",
+  "orcs": "Орки",
+  "statPerson": {
+    "stats": {
+      "strength": "Сила",
+      "agility": "Ловкость",
+      "luck": "Удача",
+      "reaction": "Реакція",
+      "anger": "Злість"
+    },
+    "parameters": {
+      "health": "Здоров'я",
+      "mana": "Мана",
+      "initiative": "Ініціатива"
+    },
+    "mastery": {
+      "defenseMastery": "Майстерність захисту",
+      "weaponMastery": "Володіння зброєю",
+      "unarmedCombat": "Кулачний бій"
+    },
+    "protect": {
+      "evasionProtect": "Оберег увороту",
+      "luckProtect": "Оберег удачи",
+      "responseProtect": "Оберег відповіді",
+      "criticalProtect": "Оберег крита"
+    },
+    "antiProtect": {
+      "evasionAntiProtect": "Анти-оберег увороту",
+      "luckAntiProtect": "Анти-оберег удачи",
+      "responseAntiProtect": "Анти-оберег відповіді",
+      "criticalAntiProtect": "Анти-оберег крита"
+    }
+  }
+}
