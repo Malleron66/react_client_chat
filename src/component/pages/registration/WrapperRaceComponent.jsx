@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import css from "./WrapperRaceComponent.module.css";
 import { LanguageContext } from "../../multilingual/LanguageProvider";
 import { StatList } from "./StatList";
@@ -55,19 +55,18 @@ const avatarRace = [
 ];
 const AvatarComponent = ({ race, gender, avatar }) => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
       <img
-        src={require(`../../../img/raceAvatar/${race}/${gender}/${avatar}.png`)}
+        src={`/img/raceAvatar/${race}/${gender}/${avatar}.png`}
         alt="Avatar"
       />
-    </Suspense>
+
   );
 };
 
 export const WrapperRaceComponent = ({ props }) => {
   const { language } = useContext(LanguageContext);
   const translations = require(`../../multilingual/languages/${language}.json`);
-  const [updatedStats, setUpdatedStats] = useState({});
+  
 
   const statPerson = {
     stats: {
@@ -174,7 +173,6 @@ export const WrapperRaceComponent = ({ props }) => {
     updatedStats.avatar = `img/raceAvatar/${currentRace}/${currentGender}/${currentAvatar[currentAvatarVersion]}.png`;
     updatedStats.race = currentRace;
     updatedStats.gender = currentGender;
-    setUpdatedStats(updatedStats);
     props(updatedStats);
   };
 

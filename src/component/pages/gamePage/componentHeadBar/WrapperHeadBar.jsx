@@ -1,11 +1,11 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import css from "./WrapperHeadBar.module.css";
 import { IconButton } from "../../../UI/button/IconButton";
 import DefaultButton from "../../../UI/button/DefaultButton";
 import { LanguageContext } from "../../../multilingual/LanguageProvider";
 import { LanguageSelect } from "../../../multilingual/LanguageSelect";
 
-export const WrapperHeadBar = () => {
+export const WrapperHeadBar = ({ userId, userLanguage }) => {
   const { language } = useContext(LanguageContext);
   const translations = require(`../../../multilingual/languages/${language}.json`);
   //PopUp Новостей
@@ -32,7 +32,7 @@ export const WrapperHeadBar = () => {
         <DefaultButton onClick={libraryPopUp} value={translations.library} />
       </div>
       <div className={css.gridRightItem}>
-        <LanguageSelect />
+        <LanguageSelect userId={userId}/>
         <IconButton
           clasS={"iconHeadBar"}
           titleText={translations.settings}

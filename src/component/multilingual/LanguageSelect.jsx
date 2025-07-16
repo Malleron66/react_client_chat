@@ -1,39 +1,34 @@
 import React, { useState, useContext, useEffect } from "react";
-import enIcon from "../../img/language/en.png";
-import ruIcon from "../../img/language/ru.png";
-import uaIcon from "../../img/language/ua.png";
 import css from "./LanguageSelect.module.css";
 import { LanguageContext } from "./LanguageProvider";
-import { getUserLanguageByToken, saveUserLanguage } from "../../lib/userInfo";
+import { saveUserLanguage } from "../../lib/userInfo";
 
-export const LanguageSelect = () => {
+export const LanguageSelect = ({ userId }) => {
   const token = localStorage.getItem("token");
   const { language, changeLanguage } = useContext(LanguageContext);
-  const translations = require(`./languages/${language}.json`);
+  const translations = require(`../multilingual/languages/${language}.json`);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState(language.toUpperCase());
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    language.toUpperCase()
+  );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const languages = [
-    { id: 1, label: "EN", icon: enIcon },
-    { id: 2, label: "RU", icon: ruIcon },
-    { id: 3, label: "UA", icon: uaIcon }
+    { id: 1, label: "EN", icon: "/img/language/en.png" },
+    { id: 2, label: "RU", icon: "/img/language/ru.png" },
+    { id: 3, label: "UA", icon: "/img/language/ua.png" },
   ];
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      const userLanguage = await getUserLanguageByToken(token);
-      if (userLanguage) {
-        changeLanguage(userLanguage);
-        setSelectedLanguage(userLanguage.toUpperCase());
-      }
-      setLoading(false);
-    };
-    fetchData();
-  }, []);
+    setLoading(true);
+    setError(null);
+    if (language) {
+      changeLanguage(language);
+      setSelectedLanguage(language.toUpperCase());
+    }
+    setLoading(false);
+  }, [language, changeLanguage]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -44,7 +39,11 @@ export const LanguageSelect = () => {
     setIsOpen(false);
     setLoading(true);
     setError(null);
-    const success = await saveUserLanguage(token, language.label.toLowerCase());
+    const success = await saveUserLanguage(
+      userId,
+      token,
+      language.label.toLowerCase()
+    );
     setLoading(false);
     if (!success) {
       setError("Не удалось сохранить язык пользователя");
@@ -60,7 +59,12 @@ export const LanguageSelect = () => {
       ) : (
         <div className={css.languageSelect}>
           <div className={css.selectedLanguage} onClick={toggleDropdown}>
-            <img src={languages.find((lang) => lang.label === selectedLanguage).icon} alt={selectedLanguage} />
+            <img
+              src={
+                languages.find((lang) => lang.label === selectedLanguage).icon
+              }
+              alt={selectedLanguage}
+            />
             <span>{selectedLanguage}</span>
           </div>
           {isOpen && (

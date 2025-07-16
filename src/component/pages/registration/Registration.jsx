@@ -28,7 +28,6 @@ const Registration = () => {
   });
 
   const handleGamePerson = (data) => {
-    console.log(data)
     setDataTemp(data);
   };
 
@@ -54,7 +53,6 @@ const Registration = () => {
 
       const dataRes = await res.json();
       localStorage.setItem("token", dataRes.token);
-      console.log(dataRes);
       if (dataRes.token) {
         window.location.replace(`/user/${dataRes.fullName}`);
       } else {

@@ -16,23 +16,6 @@ export const getUserInfo = async (token) => {
     console.error("Произошла ошибка: " + error);
   }
 };
-
-export const getUserIdByToken = async (token) => {
-  try {
-    const res = await fetch(`${server}/me`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: "Bearer " + token,
-      },
-    });
-
-    const dataRes = await res.json();
-    return dataRes._id;
-  } catch (error) {
-    console.error("Произошла ошибка: " + error);
-  }
-};
 export const getUserLanguageByToken = async (token) => {
   try {
     const res = await fetch(`${server}/me`, {
@@ -49,9 +32,8 @@ export const getUserLanguageByToken = async (token) => {
     console.error("Произошла ошибка: " + error);
   }
 };
-export const saveUserLanguage = async (token, language) => {
+export const saveUserLanguage = async (userId, token, language) => {
   try {
-    const userId = await getUserIdByToken(token);
     if (!userId) {
       throw new Error("Пользователь не найден");
     }

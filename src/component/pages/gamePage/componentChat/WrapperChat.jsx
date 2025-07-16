@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback, useRef, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useContext,
+} from "react";
 import css from "./WrapperChat.module.css";
 import hrefImgButton from "../../../../img/img_loader.png";
 import DefaultButton from "../../../UI/button/DefaultButton";
@@ -7,7 +13,7 @@ import CreateMessage from "./CreateMessage";
 import { server } from "../../../routers/Routers";
 import { LanguageContext } from "../../../multilingual/LanguageProvider";
 
-export const WrapperChat = () => {
+export const WrapperChat = ({ idUser }) => {
   const { language } = useContext(LanguageContext);
   const translations = require(`../../../multilingual/languages/${language}.json`);
   const [userId, setUserId] = useState(null);
@@ -17,32 +23,18 @@ export const WrapperChat = () => {
   const [titleMessage, setTitleMessage] = useState("");
   const token = localStorage.getItem("token");
   const smsContainerRef = useRef();
-
+  useEffect(() => {
+    if (!idUser) {
+      setUserId(idUser);
+    }
+    setUserId(idUser);
+  }, [idUser]);
   //Позиция скролла
   useEffect(() => {
     if (smsContainerRef.current) {
       smsContainerRef.current.scrollTop = smsContainerRef.current.scrollHeight;
     }
   }, [messages]);
-
-  //Получение id пользователя по токену
-  const getUserIdByToken = useCallback(async () => {
-    try {
-      const res = await fetch(`${server}/me`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "Bearer " + token,
-        },
-      });
-
-      const dataRes = await res.json();
-      return dataRes._id;
-    } catch (error) {
-      console.error("Произошла ошибка: " + error);
-    }
-  }, [token]);
-
   //Получение Всех сообщений с базы (временно)
   const getMessage = useCallback(async () => {
     try {
@@ -65,15 +57,6 @@ export const WrapperChat = () => {
       console.error("Произошла ошибка: " + error);
     }
   }, [token, userId]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const id = await getUserIdByToken();
-      setUserId(id);
-    };
-
-    fetchData();
-  }, [getUserIdByToken, token]);
 
   useEffect(() => {
     if (userId !== null) {
@@ -150,12 +133,11 @@ export const WrapperChat = () => {
         setIdEditing("");
         setTitleMessage("");
         setIsEditing(false);
-      }else{
+      } else {
         setIdEditing("");
         setTitleMessage("");
         setIsEditing(false);
       }
-
     }
   };
 
@@ -165,8 +147,6 @@ export const WrapperChat = () => {
     // Здесь вы можете обработать выбранные файлы
     console.log(selectedFiles);
   };
-
-  
 
   const deleteCallback = (message) => {
     fetch(`${server}/message`, {
@@ -196,10 +176,7 @@ export const WrapperChat = () => {
   return (
     <>
       <div className={css.chatPage}>
-        <div className={css.headChat}>
-          Переписка от кого кому
-          
-        </div>
+        <div className={css.headChat}>Переписка от кого кому</div>
         <div className={css.wSms} ref={smsContainerRef}>
           {messages.map((message) => (
             <CreateMessage
