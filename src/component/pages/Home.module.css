@@ -1,0 +1,27 @@
+.wrapperContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
+.formGroup {
+    margin-bottom: 10px;
+}
+.formGroup p {
+    margin-top: 10px;
+}
+.formGroup span {
+    margin-right: 10px;
+}
+.logoHome{
+    width: 300px;
+}
+.homeHead{
+    display: block;
+    margin: 20px;
+    font-weight: bold;
+}

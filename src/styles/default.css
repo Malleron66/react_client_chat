@@ -1,0 +1,72 @@
+* {
+  scrollbar-width: 12px;
+  scrollbar-color: #516693 #1c1d1f;
+}
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Цвет полосы прокрутки */
+::-webkit-scrollbar-thumb {
+  background-color: #516693;
+}
+
+/* Цвет фона полосы прокрутки */
+::-webkit-scrollbar-track {
+  background-color: #1c1d1f;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #0d1625;
+  color: #f3fce9;
+}
+p {
+  margin: 0;
+}
+a {
+  text-decoration: unset;
+  color: #516693;
+}
+a:hover {
+  color: #3d517c;
+}
+a:active {
+  color: #2a3866;
+}
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}

@@ -1,0 +1,85 @@
+.smsText {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin: 5px 0;
+    max-width: 200px;
+    min-width: 40px;
+    color: #ffffff;
+    word-wrap: break-word;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.smsText.received {
+    align-self: flex-start;
+    background-color: #a9370f;
+    margin-left: 9px;
+}
+.smsText.sent {
+    align-self: flex-end;
+    background-color: #0f5ba9;   
+    margin-right: 9px;
+}
+.sent::before,.received::before {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    border-width: 10px;
+    border-style: solid;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+.received::before{  
+    left: -10px;
+    border-color: transparent transparent transparent #a9370f;
+}
+.sent::before{
+    right: -10px;
+    border-color: transparent transparent transparent #0f5ba9;
+}
+.textContent{
+    display: grid;
+    grid-template-columns: auto;
+    font-size: 16px;
+    padding: 10px;
+}
+.textContent > :first-child{
+    margin: 0;
+}
+.textContent span{
+    margin-top: 10px;
+    max-width: -webkit-fill-available;
+    overflow: hidden;
+}
+.wIcon{
+    display: none;
+    position: absolute;
+    bottom: 5px;
+    background-color: #516693;
+}
+.smsText.block .wIcon{
+    display: flex;
+}
+.wIcon span{
+    width: 20px;
+    height: 20px;
+    margin: 5px 0px 5px 5px;
+    cursor: pointer;
+}
+.wIcon span:last-child{
+    margin-right: 5px;
+}
+.wIcon span:hover{
+    opacity: 0.7;
+}
+.wIcon span:active{
+    opacity: 0.5;
+}
+.received .wIcon{
+    left: 100%;
+    border-radius: 0px 5px 5px 0px;
+}
+.sent .wIcon{
+    right: 100%;
+    border-radius: 5px 0px 0px 5px;
+}

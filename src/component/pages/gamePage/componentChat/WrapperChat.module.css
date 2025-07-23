@@ -1,0 +1,124 @@
+.chatPage{
+    display: grid;
+    position: relative;
+    grid-template-rows: 0fr 10fr 0fr;
+    padding: 10px;
+    height: 317px;
+    width: 500px;
+    min-width: 500px;
+    background-size: cover;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.headChat{
+    grid-row: 1;
+    background: #1c1d1f;
+    color: #fff;
+    padding: 10px;
+    margin: -10px -10px 0px -10px;
+    z-index: 1;
+    border-radius: 5px 5px 0px 0px;
+}
+.wSending{
+    display: grid;
+    grid-template-columns: auto 145px;
+}
+.inputConteiner{
+    display: grid;
+    grid-template-columns: auto 20px;
+    margin-right: 20px;
+    background: rgb(28 29 31 / 70%);
+    padding: 1px 10px;
+    border: 2px solid #516693;
+}
+.loaderImgButton{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+.loaderImgButton:hover{
+    opacity: 0.7;
+}
+.loaderImgButton:active{
+    opacity: 0.5;
+}
+.wSms{
+    grid-row: 2;
+    margin-bottom: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+}
+.wSms > :first-child{
+    margin-top: auto !important;
+}
+.wrapperImagePreviewContainer{
+    grid-row: 3;
+    background: #232426e0;
+    padding: 20px;
+    display: none;
+    justify-content: flex-start;
+}
+.chatToggleBtn {
+  position: fixed;
+  bottom: 400px;
+    left: 10px;
+  width: 50px;
+  height: 50px;
+  background: #1c1d1f;
+  border-radius: 50%;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+  z-index: 999;
+}
+
+.chatToggleBtn:hover {
+  background-color: #2e2f32;
+}
+
+.chatClosed {
+  position: fixed;
+  left: 10px;
+  width: 500px;
+  height: 250px;
+  min-width: 500px;
+  background-size: cover;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(40px) scale(0.98); /* только transform для анимации */
+  opacity: 0;
+  filter: blur(2px);
+  pointer-events: none;
+  transition: 
+    transform 0.35s cubic-bezier(.4,2,.6,1), 
+    opacity 0.35s cubic-bezier(.4,2,.6,1), 
+    filter 0.35s cubic-bezier(.4,2,.6,1);
+}
+
+.chatOpened {
+  position: fixed;
+  left: 0px;
+    bottom: 0px;
+  width: 500px;
+  height: 406px;
+  min-width: 500px;
+  background-size: cover;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(0px) scale(1);
+  opacity: 1;
+  filter: blur(0);
+  pointer-events: auto;
+  transition: 
+    transform 0.35s cubic-bezier(.4,2,.6,1), 
+    opacity 0.35s cubic-bezier(.4,2,.6,1), 
+    filter 0.35s cubic-bezier(.4,2,.6,1);
+}
