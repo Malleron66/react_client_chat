@@ -50,10 +50,10 @@ export const WrapperChat = ({ idUser }) => {
       const newMessages = dataRes.map((data) => ({
   id: data.id,
   customClass: userId === data.user
-    ? data.sender === "queen"
-      ? "received" // Квин — не ты, даже если user совпадает
+    ? data.sender === "assistant"
+      ? "received" 
       : "sent"     // Ты отправил
-    : "received",  // От чужого пользователя (в будущем)
+    : "received",  // От assistant
   valueMessage: data.text,
 }));
       setMessage(newMessages);
@@ -199,7 +199,7 @@ export const WrapperChat = ({ idUser }) => {
 
       // Запрос к серверу для получения ответа Квин
       try {
-        const res = await fetch(`${server}/ai/qwen`, {
+        const res = await fetch(`${server}/ai/assistant`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
