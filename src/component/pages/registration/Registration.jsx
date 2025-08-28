@@ -1,17 +1,15 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import DefaultButton from "../../UI/button/DefaultButton";
 import DefaultInput from "../../UI/input/DefaultInput";
 import css from "../Home.module.css";
 import { useForm } from "react-hook-form";
 import { server } from "../../routers/Routers";
 import { LanguageContext } from "../../multilingual/LanguageProvider";
-import { WrapperRaceComponent } from "./WrapperRaceComponent";
+
 
 const Registration = () => {
   const { language } = useContext(LanguageContext);
   const translations = require(`../../multilingual/languages/${language}.json`);
-  const [dataTemp, setDataTemp] = useState();
-  const [isDataTempChanged, setIsDataTempChanged] = useState(false);
   const {
     register,
     handleSubmit,
@@ -26,29 +24,14 @@ const Registration = () => {
       passwordConfirmation: "",
     },
   });
-
-  const handleGamePerson = (data) => {
-    setDataTemp(data);
-  };
-
-  useEffect(() => {
-    if (dataTemp !== undefined) {
-      setIsDataTempChanged(true);
-    }
-  }, [dataTemp]);
-
   const onSubmit = async (data) => {
     const { passwordConfirmation, ...dataUser } = data;
-    if (!isDataTempChanged) {
-      console.log("DataTemp is not changed");
-      return;
-    }
-    const dataGamePerson = { ...dataUser, ...dataTemp };
+    const dataPerson = { ...dataUser };
     try {
       const res = await fetch(`${server}/registration`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dataGamePerson),
+        body: JSON.stringify(dataPerson),
       });
 
       const dataRes = await res.json();
@@ -67,7 +50,6 @@ const Registration = () => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={css.formGroup}>
-          <WrapperRaceComponent props={handleGamePerson} />
           <DefaultInput
             customClass="boxShadow"
             type="text"
